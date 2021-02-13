@@ -3,7 +3,9 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 const Hapi = require("@hapi/hapi");
-const Poll = require("./poll");
+const Local = require("./plugins/local");
+const pathLib = require("path");
+const buildPoll = require("./buildPoll");
 
 const init = async () => {
   const server = Hapi.server({
@@ -15,18 +17,19 @@ const init = async () => {
     method: "GET",
     path: "/",
     handler: (request, h) => {
-      const elecs = {
-        elec1: new Poll({
-          name: "Eleição pra presidente da Ilha do Sino",
-          type: "ELECTION",
-        }),
-        elec2: new Poll({
-          name: "Vamos jogar pique-esconde?",
-          type: "YESNO",
-        }),
-      };
-      console.log(elecs);
-      return elecs;
+      return "Success! 🎉";
+    },
+  });
+
+  server.route({
+    method: "GET",
+    path: "/getpoll/{pollId}",
+    handler: (req, h) => {
+      try {
+        return buildPoll(`polls/${req.params.pollId}`);
+      } catch (err) {
+        h.response("not found").code(404);
+      }
     },
   });
 

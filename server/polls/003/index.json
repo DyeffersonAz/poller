@@ -1,0 +1,26 @@
+{
+  "id": "003",
+  "name": "Bell Island",
+  "type": "ELECTION",
+  "pluginName": "local",
+  "roles": [
+    {
+      "title": "President",
+      "type": "ONEWINNER",
+      "candidates": [
+        {
+          "name": "Puio Tapajós",
+          "votes": 0,
+          "group": "PMA",
+          "code": "00001"
+        },
+        {
+          "name": "Pedro Moreira",
+          "votes": 0,
+          "group": "PT",
+          "code": "00002"
+        }
+      ]
+    }
+  ]
+}
