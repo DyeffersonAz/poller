@@ -16,9 +16,14 @@
   * **Associated plugin** (the one used to get the votes from an API)
   * **Map Flag** (if this election/poll has any type of map to work with, to see how each region of it is voting, for example) *(Boolean value)*
     * **Map Properties** (here will come all information needed to have a map in the application) *(still to be seen)*
-  * **Options/Candidates**. Each one has:
+  * **Role** (in case of elections only.) *(multiple)*
+    * **Candidates**. *(multiple)* Each one has:
+      * **Name**
+      * **Number of votes**
+      * **Status** (elected or not)
+      * **Color** (may be used as color of party to be displayed in the application itself, yes/no will be default to green/red and general polls will have random colors).
+  * **Options** (in case of general polls and yes/no questions) *(multiple)* Each one has:
     * **Name/Identifier**
     * **Number of votes**
-    * **Status** (elected or not) *(in case of elections only)*
-    * **Color** (may be used as color of party to be displayed in the application itself, yes/no will be default to green/red and general polls will have random colors).
+    * **Color** (Yes/no defaults to green/red, general polls to random colors).
 * The UI will be based on TV's already consolidated vote counting panels and interactive screens. Examples of those can be seen at https://pin.it/4CGEvnP .
