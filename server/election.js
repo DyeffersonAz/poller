@@ -3,10 +3,10 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 const Poll = require("./poll");
-const Role = require("./role");
+const Place = require("./place");
 
 module.exports = class Election extends Poll {
-  constructor({ id, name, pluginName, overridesPath, roles }) {
+  constructor({ id, name, pluginName, overridesPath, places }) {
     super({
       id,
       name,
@@ -18,12 +18,13 @@ module.exports = class Election extends Poll {
 
     delete this.options;
 
-    this.roles = roles.map(
-      (role) =>
-        new Role({
-          title: role.title,
-          type: role.type,
-          candidates: role.candidates,
+    this.places = places.map(
+      (place) =>
+        new Place({
+          name: place.name,
+          type: place.type,
+          isSum: place.isSum,
+          roles: place.roles,
         })
     );
   }

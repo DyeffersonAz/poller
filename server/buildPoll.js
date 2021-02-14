@@ -7,14 +7,15 @@ const fs = require("fs");
 const Poll = require("./poll");
 const Election = require("./election");
 
-module.exports = function buildPoll(path, plugin) {
-  if (!plugin) {
-    plugin = "local";
+module.exports = function buildPoll(path, pluginName) {
+  if (!pluginName) {
+    pluginName = "local";
   }
   plugin = require(`${pathLib.dirname(
     require.main.filename
-  )}/plugins/${plugin}/`);
+  )}/plugins/${pluginName}/`);
 
+  plugin.onLoad();
   let poll = plugin.getData(path);
 
   const overrides = JSON.parse(fs.readFileSync(poll.overridesPath).toString());
@@ -36,7 +37,7 @@ module.exports = function buildPoll(path, plugin) {
       type: poll.type,
       name: poll.name,
       pollPath: path,
-      pluginName: plugin,
+      pluginName: pluginName,
       overridesPath: poll.overridesPath,
       options: poll.options,
     });
@@ -46,9 +47,9 @@ module.exports = function buildPoll(path, plugin) {
       type: poll.type,
       name: poll.name,
       pollPath: path,
-      pluginName: plugin,
+      pluginName: pluginName,
       overridesPath: poll.overridesPath,
-      roles: poll.roles,
+      places: poll.places,
     });
   }
 };
