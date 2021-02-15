@@ -27,12 +27,11 @@ class Poll extends React.Component {
   render() {
     return (
       <div>
-        <h1>Poll</h1>
-        <p>The poll's ID is {this.state.poll.id}</p>
+        <h1>{this.state.poll.title}</h1>
         <ul>
-          <li>
-            The poll's title is <em>"{this.state.poll.name}"</em>
-          </li>
+          {this.state.poll.options
+            ? this.state.poll.options.map((op) => <li>{op.title}</li>)
+            : null}
         </ul>
       </div>
     );

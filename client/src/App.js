@@ -11,7 +11,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>This is working!</h1>
-        <Poll id="001" />
+        <Poll id="003" />
       </div>
     );
   }
