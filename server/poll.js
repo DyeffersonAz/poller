@@ -6,18 +6,20 @@ const Option = require("./option");
 const path = require("path");
 
 module.exports = class Poll {
-  constructor({ id, name, type, pluginName, overridesPath, options }) {
+  constructor({ id, title, type, pluginName, overridesPath, options }) {
     this.id = id;
-    this.name = name;
+    this.title = title;
     this.type = type ? type : "POLL";
     this.pluginName = pluginName;
     this.overridesPath = path.normalize(overridesPath);
-    this.options = options.map((op) => {
-      return new Option({
-        name: op.name,
-        votes: op.votes,
-        color: op.color,
+    if (options) {
+      this.options = options.map((op) => {
+        return new Option({
+          title: op.title,
+          votes: op.votes,
+          color: op.color,
+        });
       });
-    });
+    }
   }
 };

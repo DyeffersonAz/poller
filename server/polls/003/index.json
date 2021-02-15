@@ -1,6 +1,6 @@
 {
   "id": "003",
-  "name": "Bell Island's Presidential Election",
+  "title": "Bell Island's Presidential Election",
   "type": "ELECTION",
   "pluginName": "local",
   "places": [

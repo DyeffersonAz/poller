@@ -6,14 +6,13 @@ const Poll = require("./poll");
 const Place = require("./place");
 
 module.exports = class Election extends Poll {
-  constructor({ id, name, pluginName, overridesPath, places }) {
+  constructor({ id, title, pluginName, overridesPath, places }) {
     super({
       id,
-      name,
+      title,
       type: "ELECTION",
       pluginName,
       overridesPath,
-      options: [],
     });
 
     delete this.options;

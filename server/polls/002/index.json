@@ -1,6 +1,6 @@
 {
   "id": "002",
-  "name": "Can we play hide and seek?",
+  "title": "Can we play hide and seek?",
   "type": "YESNO",
   "pluginName": "local",
   "options": [

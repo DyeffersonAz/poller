@@ -6,6 +6,7 @@ const pathLib = require("path");
 const fs = require("fs");
 const Poll = require("./poll");
 const Election = require("./election");
+const override = require("json-override");
 
 module.exports = function buildPoll(path, pluginName) {
   if (!pluginName) {
@@ -20,17 +21,8 @@ module.exports = function buildPoll(path, pluginName) {
 
   const overrides = JSON.parse(fs.readFileSync(poll.overridesPath).toString());
 
-  Object.keys(poll).forEach((key) => {
-    if (overrides[key]) {
-      poll[key] = overrides[key];
-    }
-  });
+  poll = override(poll, overrides);
 
-  Object.keys(overrides).forEach((key) => {
-    if (!poll[key] && overrides[key]) {
-      poll[key] = overrides[key];
-    }
-  });
   if (poll.type == "POLL" || poll.type == "YESNO") {
     return new Poll({
       id: poll.id,
