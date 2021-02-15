@@ -9,11 +9,18 @@ class Poll extends React.Component {
     super(props);
 
     this.getElection = this.getElection.bind(this);
+    this.state = { poll: {} };
+  }
+
+  componentDidMount() {
+    const fetchpoll = this.getElection(this.props.id);
+    this.setState({ poll: fetchpoll });
   }
 
   async getElection(id) {
     const res = await fetch("http://localhost:3001/getpoll/" + id);
     const json = await res.json();
+    console.log("fetched json", json);
     return json;
   }
 
@@ -21,6 +28,7 @@ class Poll extends React.Component {
     return (
       <div>
         <h1>Poll</h1>
+        <p>The poll's ID is {this.state.poll.id}</p>
       </div>
     );
   }
