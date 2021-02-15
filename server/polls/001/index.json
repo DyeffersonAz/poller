@@ -1,6 +1,6 @@
 {
   "id": "001",
-  "name": "What's the best one?",
+  "title": "What's the best one?",
   "type": "POLL",
   "pluginName": "local",
   "options": [

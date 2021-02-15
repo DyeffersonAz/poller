@@ -6,7 +6,9 @@ const Option = require("./option");
 
 module.exports = class Candidate extends Option {
   constructor({ name, votes, color, group, code, status }) {
-    super({ name, votes, color });
+    super({ title: name, votes, color });
+    this.name = this.title;
+    delete this.title;
     this.group = group;
     this.code = code ? code : null;
     this.status = status ? status : "NOTELECTED";
