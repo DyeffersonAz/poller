@@ -27,7 +27,7 @@ module.exports = function buildPoll(path, pluginName) {
     return new Poll({
       id: poll.id,
       type: poll.type,
-      name: poll.name,
+      title: poll.title,
       pollPath: path,
       pluginName: pluginName,
       overridesPath: poll.overridesPath,
@@ -37,7 +37,7 @@ module.exports = function buildPoll(path, pluginName) {
     return new Election({
       id: poll.id,
       type: poll.type,
-      name: poll.name,
+      title: poll.title,
       pollPath: path,
       pluginName: pluginName,
       overridesPath: poll.overridesPath,
