@@ -16,9 +16,9 @@ module.exports = class Option {
     const colorMax = 150;
     const colorMin = 10;
     if (op.name.toLowerCase() == "yes") {
-      return "green";
+      return Color("green");
     } else if (op.name.toLowerCase() == "no") {
-      return "red";
+      return Color("red");
     } else {
       return Color.rgb(
         Math.floor(Math.random() * (colorMax - colorMin) + colorMin),
