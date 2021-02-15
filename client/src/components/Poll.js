@@ -12,8 +12,8 @@ class Poll extends React.Component {
     this.state = { poll: {} };
   }
 
-  componentDidMount() {
-    const fetchpoll = this.getElection(this.props.id);
+  async componentDidMount() {
+    const fetchpoll = await this.getElection(this.props.id);
     this.setState({ poll: fetchpoll });
   }
 
@@ -29,6 +29,11 @@ class Poll extends React.Component {
       <div>
         <h1>Poll</h1>
         <p>The poll's ID is {this.state.poll.id}</p>
+        <ul>
+          <li>
+            The poll's title is <em>"{this.state.poll.name}"</em>
+          </li>
+        </ul>
       </div>
     );
   }
