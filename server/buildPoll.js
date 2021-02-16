@@ -8,16 +8,21 @@ const Poll = require("./poll");
 const Election = require("./election");
 const override = require("json-override");
 
-module.exports = function buildPoll(path, pluginName) {
-  if (!pluginName) {
-    pluginName = "local";
+module.exports = async function buildPoll(path) {
+  const index = fs.readFileSync(
+    `${pathLib.dirname(require.main.filename)}/${path}/index.json`
+  );
+  const parsed = JSON.parse(index.toString());
+
+  if (!parsed.pluginName) {
+    parsed.pluginName = "local";
   }
-  plugin = require(`${pathLib.dirname(
-    require.main.filename
-  )}/plugins/${pluginName}/`);
+  const plugin = require(`${pathLib.dirname(require.main.filename)}/plugins/${
+    parsed.pluginName
+  }/`);
 
   plugin.onLoad();
-  let poll = plugin.getData(path);
+  let poll = await plugin.getData(path);
 
   const overrides = JSON.parse(fs.readFileSync(poll.overridesPath).toString());
 
@@ -29,7 +34,7 @@ module.exports = function buildPoll(path, pluginName) {
       type: poll.type,
       title: poll.title,
       pollPath: path,
-      pluginName: pluginName,
+      pluginName: parsed.pluginName,
       overridesPath: poll.overridesPath,
       options: poll.options,
     });
