@@ -3,6 +3,8 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import React from "react";
+import styles from "./Poll.module.css";
+import Option from "./Option";
 
 class Poll extends React.Component {
   constructor(props) {
@@ -25,16 +27,17 @@ class Poll extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <h1>{this.state.poll.title}</h1>
-        <ul>
-          {this.state.poll.options
-            ? this.state.poll.options.map((op) => <li>{op.title}</li>)
-            : null}
-        </ul>
-      </div>
-    );
+    if (this.state.poll.options) {
+      return (
+        <div className={styles.poll}>
+          <h2>{this.state.poll.title}</h2>
+          {this.state.poll.options.map((op) => (
+            <Option op={op} />
+          ))}
+        </div>
+      );
+    }
+    return <div>Loading...</div>;
   }
 }
 
