@@ -27,11 +27,12 @@ const init = async () => {
   server.route({
     method: "GET",
     path: "/getpoll/{pollId}",
-    handler: (req, h) => {
+    handler: async (req, h) => {
       try {
-        return buildPoll(`polls/${req.params.pollId}`);
+        const poll = await buildPoll(`polls/${req.params.pollId}`);
+        return poll;
       } catch (err) {
-        h.response("not found").code(404);
+        console.log("AN ERROR OCURRED!! 😨", err);
       }
     },
   });
