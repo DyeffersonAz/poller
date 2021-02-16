@@ -5,6 +5,7 @@
 import React from "react";
 import styles from "./Poll.module.css";
 import Option from "./Option";
+import { withRouter } from "react-router-dom";
 
 class Poll extends React.Component {
   constructor(props) {
@@ -15,7 +16,8 @@ class Poll extends React.Component {
   }
 
   async componentDidMount() {
-    const fetchpoll = await this.getElection(this.props.id);
+    console.log("match", this.props.match);
+    const fetchpoll = await this.getElection(this.props.match.params.id);
     this.setState({ poll: fetchpoll });
   }
 
@@ -41,4 +43,4 @@ class Poll extends React.Component {
   }
 }
 
-export default Poll;
+export default withRouter(Poll);

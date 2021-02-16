@@ -4,6 +4,7 @@
 
 import React from "react";
 import Color from "color";
+import styles from "./Option.module.css";
 class Option extends React.Component {
   constructor(props) {
     super(props);
@@ -16,17 +17,14 @@ class Option extends React.Component {
 
   render() {
     return (
-      <div>
+      <div
+        style={{
+          backgroundColor: this.state.color,
+          color: this.state.color.lighten(2),
+        }}
+      >
         <p>
-          <b
-            style={{
-              backgroundColor: this.state.color,
-              color: this.state.color.negate(),
-            }}
-          >
-            {this.props.op.title}
-          </b>{" "}
-          - {this.props.op.votes} votes
+          <b>{this.props.op.title}</b> - {this.props.op.votes} votes
         </p>
       </div>
     );

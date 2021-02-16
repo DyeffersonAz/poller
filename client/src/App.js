@@ -5,16 +5,45 @@
 import React from "react";
 import "./App.css";
 import Poll from "./components/Poll";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+} from "react-router-dom";
+import PollSelectionForm from "./components/PollSelectionForm";
 
-class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>Poller</h1>
-        <Poll id="005" />
-      </div>
-    );
-  }
+function App() {
+  return (
+    <Router>
+      <div></div>
+      <Switch>
+        <Route path="/selection">
+          <PollSelectionForm />
+        </Route>
+        <Route path="/poll">
+          <Polls />
+        </Route>
+      </Switch>
+    </Router>
+  );
+}
+
+function Polls() {
+  let match = useRouteMatch();
+  return (
+    <div>
+      <Switch>
+        <Route path={`${match.path}/:id`}>
+          <Poll />
+        </Route>
+        <Route path={match.path}>
+          <h3>Please select a poll.</h3>
+        </Route>
+      </Switch>
+    </div>
+  );
 }
 
 export default App;
