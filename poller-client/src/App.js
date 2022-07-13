@@ -1,36 +1,39 @@
-import "./App.css";
-import Poll from "./components/poll";
+import React from 'react';
+import './App.css';
+import Poll from './components/poll';
 
+/**
+ * Component representing an app
+ *
+ * @return {JSX}
+ */
 function App() {
   const currentOptions = [
     {
-      title: "Flocos",
+      title: 'Flocos',
       votes: 98,
-      color: "lightgray",
+      color: 'lightgray',
     },
     {
-      title: "Morango",
+      title: 'Morango',
       votes: 15,
-      color: "red",
+      color: 'red',
     },
     {
-      title: "Chocolate",
+      title: 'Chocolate',
       votes: 15,
-      color: "brown",
+      color: 'brown',
     },
     {
-      title: "Napolitano",
+      title: 'Napolitano',
       votes: 2,
-      color: "darkblue",
+      color: 'darkblue',
     },
-  ]
+  ];
 
   return (
     <div className="App">
-      <Poll
-        title="Qual o melhor sabor de sorvete?"
-        options={currentOptions}
-      />
+      <Poll title="Qual o melhor sabor de sorvete?" options={currentOptions} />
     </div>
   );
 }
