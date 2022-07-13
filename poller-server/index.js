@@ -5,7 +5,7 @@
  */
 
 require("dotenv").config({ path: __dirname + "/.env" });
-const { createIfNotAlready } = require("./db");
+const { createIfNotAlready, getPollById } = require("./db");
 const express = require("express");
 
 const app = express();
@@ -15,6 +15,12 @@ const port = 3500;
 app.get("/", (req, res) => {
   res.send("Poller server. Dyefferson Azevedo, 2022");
 });
+
+app.get("/getPoll/*", async (req, res) => {
+  const id = req.params[0]
+  let result = await getPollById(id);
+  res.send(result);
+})
 
 app.listen(port, () => {
   console.log(`Poller is running on port ${port}`);

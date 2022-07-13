@@ -5,7 +5,7 @@
  */
 
 require("dotenv").config({ path: __dirname + "/.env" });
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
 
 const dbAccess = `mongodb+srv://dyefferson:${process.env.DB_PASSWORD}@cluster0.jp420.mongodb.net/?retryWrites=true&w=majority`;
 const dbClient = new MongoClient(dbAccess);
@@ -38,4 +38,16 @@ async function createIfNotAlready(obj, collectionName, key) {
   }
 }
 
-module.exports = { createIfNotAlready };
+async function getPollById(id) {
+  try {
+    const database = dbClient.db(DATABASE);
+    const collection = database.collection("polls");
+
+    const search = await collection.findOne({ _id: ObjectId(id) });
+    return search;
+  } finally {
+    await dbClient.close();
+  }
+}
+
+module.exports = { createIfNotAlready, getPollById };
