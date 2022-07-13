@@ -38,11 +38,17 @@ async function createIfNotAlready(obj, collectionName, key) {
   }
 }
 
+/**
+ *
+ * @param {string} id - Poll's id to be searched for
+ * @return {object} Result of search
+ */
 async function getPollById(id) {
   try {
     const database = dbClient.db(DATABASE);
     const collection = database.collection("polls");
 
+    // eslint-disable-next-line new-cap
     const search = await collection.findOne({ _id: ObjectId(id) });
     return search;
   } finally {
