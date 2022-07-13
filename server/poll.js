@@ -1,25 +1,22 @@
-/* This Source Code Form is subject to the terms of the Mozilla Public
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ */
 
-const Option = require("./option");
-const path = require("path");
+// const PollOption = require("./poll-option");
 
+/**
+ * Represents a Poll, which is an abstraction for a survey or an election.
+ */
 module.exports = class Poll {
-  constructor({ id, title, type, pluginName, overridesPath, options }) {
-    this.id = id;
+  /**
+   * Create a poll.
+   * @param {string} title
+   * @param {array} options - array containing objects that extend "Option".
+   */
+  constructor(title, options) {
     this.title = title;
-    this.type = type ? type : "POLL";
-    this.pluginName = pluginName;
-    this.overridesPath = path.normalize(overridesPath);
-    if (options) {
-      this.options = options.map((op) => {
-        return new Option({
-          title: op.title,
-          votes: op.votes,
-          color: op.color,
-        });
-      });
-    }
+    this.options = options;
   }
 };
